@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { AppState, Device, ExcalidrawProps } from "../types";
 import { ActionManager } from "../actions/manager";
 import { t } from "../i18n";
@@ -59,10 +59,24 @@ export const MobileMenu = ({
   device,
 }: MobileMenuProps) => {
   const { welcomeScreenCenterTunnel, mainMenuTunnel } = useTunnels();
+  
+  // 用于检测屏幕宽度的状态
+  const [isWideScreen, setIsWideScreen] = useState(window.innerWidth >= 640);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsWideScreen(window.innerWidth >= 640);
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   const renderToolbar = () => {
     return (
       <FixedSideContainer side="top" className="App-top-bar">
-        <welcomeScreenCenterTunnel.Out />
+        {/* 根据屏幕宽度条件渲染 */}
+        {isWideScreen && <welcomeScreenCenterTunnel.Out />}
         <Section heading="shapes">
           {(heading: React.ReactNode) => (
             <Stack.Col gap={4} align="center">
