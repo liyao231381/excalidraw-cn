@@ -59,17 +59,17 @@ export const MobileMenu = ({
   device,
 }: MobileMenuProps) => {
   const { welcomeScreenCenterTunnel, mainMenuTunnel } = useTunnels();
-  
+
   // 用于检测屏幕宽度的状态
-  const [isWideScreen, setIsWideScreen] = useState(window.innerWidth >= 640);
+  const [isWideScreen, setIsWideScreen] = useState(window.innerWidth >= 1200);
 
   useEffect(() => {
     const handleResize = () => {
-      setIsWideScreen(window.innerWidth >= 640);
+      setIsWideScreen(window.innerWidth >= 1200);
     };
 
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   const renderToolbar = () => {
