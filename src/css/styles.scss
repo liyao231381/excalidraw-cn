@@ -226,7 +226,20 @@
 
   .App-toolbar {
     width: 100%;
+    overflow-x: auto;
+    // 隐藏滚动条
+    &::-webkit-scrollbar { // 针对WebKit浏览器（如Chrome, Safari）
+        display: none; // 隐藏滚动条
+    }
 
+    & {
+        -ms-overflow-style: none; // 针对IE和Edge
+        scrollbar-width: none; // 针对Firefox
+    }
+
+    .ToolIcon__keybinding {
+      display: none; // 隐藏快捷键绑定
+    }
     .eraser {
       &.ToolIcon:hover {
         --icon-fill-color: #fff;
@@ -242,7 +255,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 8px;
+    padding: 3px 8px;
   }
 
   .App-mobile-menu {
@@ -270,7 +283,7 @@
 
   .App-menu_top {
     grid-template-columns: 1fr 2fr 1fr;
-    grid-gap: 2rem;
+    grid-gap: 1rem;
     align-items: flex-start;
     cursor: default;
     pointer-events: none !important;
@@ -545,7 +558,7 @@
 
   .mobile-misc-tools-container {
     position: absolute;
-    top: calc(5rem - var(--editor-container-padding));
+    top: calc(7rem);
     right: calc(var(--editor-container-padding) * -1);
     display: flex;
     flex-direction: column;
@@ -567,13 +580,24 @@
   }
 
   .App-toolbar--mobile {
-    overflow-x: hidden;
-    max-width: 100vw;
+    overflow-x: auto; // 允许横向滚动
+    max-width: 100vw; // 最大宽度为视口宽度
+
+    // 隐藏滚动条
+    &::-webkit-scrollbar { // 针对WebKit浏览器（如Chrome, Safari）
+        display: none; // 隐藏滚动条
+    }
+
+    & {
+        -ms-overflow-style: none; // 针对IE和Edge
+        scrollbar-width: none; // 针对Firefox
+    }
 
     .ToolIcon__keybinding {
-      display: none;
+      display: none; // 隐藏快捷键绑定
     }
   }
+
   .UserList-Wrapper {
     margin: 0;
     padding: 0;
